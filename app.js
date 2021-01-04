@@ -13,6 +13,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/scripts/bootstrap.min.js', function(req, res) {
+    res.sendFile(__dirname + '/node_modules/bootstrap/dist/bootstrap.min.js');
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
