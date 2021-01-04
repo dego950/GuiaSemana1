@@ -13,9 +13,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.get('/scripts/bootstrap.min.js', function(req, res) {
-    res.sendFile(__dirname + '/node_modules/bootstrap/dist/bootstrap.min.js');
-});
+
+
+// Bootstrap 4 y librerías necesarias
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
+
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
